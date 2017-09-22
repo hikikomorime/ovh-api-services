@@ -25,6 +25,17 @@ angular.module("ovh-api-services").service("OvhApiCloudDbStdInstanceDatabaseLexi
             method: "POST",
             cache: cache,
             interceptor: interceptor
+        },
+        getExtensions: {
+            url: "/cloudDB/:projectId/standard/instance/:instanceId/database/:databaseId/extension",
+            method: "GET",
+            isArray: true,
+            cache: cache
+        },
+        getExtension: {
+            url: "/cloudDB/:projectId/standard/instance/:instanceId/database/:databaseId/extension/extensionId",
+            method: "GET",
+            cache: cache
         }
     });
 

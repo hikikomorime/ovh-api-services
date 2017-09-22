@@ -2,6 +2,7 @@ angular.module("ovh-api-services").service("OvhApiCloudDbLexi", function ($resou
     "use strict";
 
     var cache = $cacheFactory("OvhApiCloudDbLexi");
+    var schemaCache = $cacheFactory("OvhApiDedicatedCephLexiSchema");
     var queryCache = $cacheFactory("OvhApiCloudDbLexiQuery");
     var interceptor = {
         response: function (response) {
@@ -14,6 +15,11 @@ angular.module("ovh-api-services").service("OvhApiCloudDbLexi", function ($resou
     var resource = $resource("/cloudDB/:projectId", {
         projectId: "@projectId"
     }, {
+        schema: {
+            method: "GET",
+            cache: schemaCache,
+            url: "/cloudDB.json"
+        },
         query: { method: "GET", isArray: true },
         get: { method: "GET", cache: cache },
         edit: { method: "PUT", interceptor: interceptor },
@@ -30,6 +36,10 @@ angular.module("ovh-api-services").service("OvhApiCloudDbLexi", function ($resou
 
     resource.resetQueryCache = function () {
         queryCache.removeAll();
+    };
+
+    resource.resetSchemaCache = function () {
+        schemaCache.removeAll();
     };
 
     return resource;

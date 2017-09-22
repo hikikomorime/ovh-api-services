@@ -165,6 +165,7 @@ angular.module("ovh-api-services").service("OvhApiCloudDbLexi", ["$resource", "$
     "use strict";
 
     var cache = $cacheFactory("OvhApiCloudDbLexi");
+    var schemaCache = $cacheFactory("OvhApiDedicatedCephLexiSchema");
     var queryCache = $cacheFactory("OvhApiCloudDbLexiQuery");
     var interceptor = {
         response: function (response) {
@@ -177,6 +178,11 @@ angular.module("ovh-api-services").service("OvhApiCloudDbLexi", ["$resource", "$
     var resource = $resource("/cloudDB/:projectId", {
         projectId: "@projectId"
     }, {
+        schema: {
+            method: "GET",
+            cache: schemaCache,
+            url: "/cloudDB.json"
+        },
         query: { method: "GET", isArray: true },
         get: { method: "GET", cache: cache },
         edit: { method: "PUT", interceptor: interceptor },
@@ -193,6 +199,10 @@ angular.module("ovh-api-services").service("OvhApiCloudDbLexi", ["$resource", "$
 
     resource.resetQueryCache = function () {
         queryCache.removeAll();
+    };
+
+    resource.resetSchemaCache = function () {
+        schemaCache.removeAll();
     };
 
     return resource;
@@ -351,6 +361,17 @@ angular.module("ovh-api-services").service("OvhApiCloudDbStdInstanceDatabaseLexi
             method: "POST",
             cache: cache,
             interceptor: interceptor
+        },
+        getExtensions: {
+            url: "/cloudDB/:projectId/standard/instance/:instanceId/database/:databaseId/extension",
+            method: "GET",
+            isArray: true,
+            cache: cache
+        },
+        getExtension: {
+            url: "/cloudDB/:projectId/standard/instance/:instanceId/database/:databaseId/extension/extensionId",
+            method: "GET",
+            cache: cache
         }
     });
 
