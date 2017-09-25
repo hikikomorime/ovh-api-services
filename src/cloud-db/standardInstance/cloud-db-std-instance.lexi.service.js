@@ -18,6 +18,8 @@ angular.module("ovh-api-services").service("OvhApiCloudDbStdInstanceLexi", funct
         query: { method: "GET", isArray: true },
         get: { method: "GET", cache: cache },
         edit: { method: "PUT", interceptor: interceptor },
+        post: { method: "POST", interceptor: interceptor },
+        remove: { method: "DELETE", interceptor: interceptor },
         getConfiguration: {
             url: "/cloudDB/:projectId/standard/instance/:instanceId/configuration",
             method: "GET",

@@ -27,6 +27,39 @@ angular.module("ovh-api-services").service("OvhApiCloudDbLexi", function ($resou
             url: "/cloudDB/:projectId/serviceInfos",
             method: "GET",
             cache: cache
+        },
+        getImages: {
+            url: "/cloudDB/:projectId/standard/image",
+            method: "GET",
+            cache: cache,
+            isArray: true
+        },
+        getImage: {
+            url: "/cloudDB/:projectId/standard/image/:imageId",
+            method: "GET",
+            cache: cache
+        },
+        getRegions: {
+            url: "/cloudDB/:projectId/standard/region",
+            method: "GET",
+            cache: cache,
+            isArray: true
+        },
+        getRegion: {
+            url: "/cloudDB/:projectId/standard/region/:regionId",
+            method: "GET",
+            cache: cache
+        },
+        getFlavors: {
+            url: "/cloudDB/:projectId/standard/flavor",
+            method: "GET",
+            cache: cache,
+            isArray: true
+        },
+        getFlavor: {
+            url: "/cloudDB/:projectId/standard/flavor/:flavorId",
+            method: "GET",
+            cache: cache
         }
     });
 

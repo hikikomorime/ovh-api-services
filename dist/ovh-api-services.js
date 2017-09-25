@@ -190,6 +190,39 @@ angular.module("ovh-api-services").service("OvhApiCloudDbLexi", ["$resource", "$
             url: "/cloudDB/:projectId/serviceInfos",
             method: "GET",
             cache: cache
+        },
+        getImages: {
+            url: "/cloudDB/:projectId/standard/image",
+            method: "GET",
+            cache: cache,
+            isArray: true
+        },
+        getImage: {
+            url: "/cloudDB/:projectId/standard/image/:imageId",
+            method: "GET",
+            cache: cache
+        },
+        getRegions: {
+            url: "/cloudDB/:projectId/standard/region",
+            method: "GET",
+            cache: cache,
+            isArray: true
+        },
+        getRegion: {
+            url: "/cloudDB/:projectId/standard/region/:regionId",
+            method: "GET",
+            cache: cache
+        },
+        getFlavors: {
+            url: "/cloudDB/:projectId/standard/flavor",
+            method: "GET",
+            cache: cache,
+            isArray: true
+        },
+        getFlavor: {
+            url: "/cloudDB/:projectId/standard/flavor/:flavorId",
+            method: "GET",
+            cache: cache
         }
     });
 
@@ -300,6 +333,8 @@ angular.module("ovh-api-services").service("OvhApiCloudDbStdInstanceLexi", ["$re
         query: { method: "GET", isArray: true },
         get: { method: "GET", cache: cache },
         edit: { method: "PUT", interceptor: interceptor },
+        post: { method: "POST", interceptor: interceptor },
+        remove: { method: "DELETE", interceptor: interceptor },
         getConfiguration: {
             url: "/cloudDB/:projectId/standard/instance/:instanceId/configuration",
             method: "GET",
