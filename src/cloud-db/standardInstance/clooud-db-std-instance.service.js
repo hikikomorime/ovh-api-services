@@ -5,6 +5,9 @@ angular.module("ovh-api-services").service("OvhApiCloudDbStdInstance", function 
         Lexi: function () {
             return $injector.get("OvhApiCloudDbStdInstanceLexi");
         },
+        Erika: function () {
+            return $injector.get("OvhApiCloudDbStdInstanceErika");
+        },
         WhiteList: function () {
             return $injector.get("OvhApiCloudDbStdInstanceWhiteList");
         }

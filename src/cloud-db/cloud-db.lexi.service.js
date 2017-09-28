@@ -60,6 +60,15 @@ angular.module("ovh-api-services").service("OvhApiCloudDbLexi", function ($resou
             url: "/cloudDB/:projectId/standard/flavor/:flavorId",
             method: "GET",
             cache: cache
+        },
+        getTasks: {
+            url: "/cloudDB/:projectId/task",
+            method: "GET",
+            isArray: true
+        },
+        getTask: {
+            url: "/cloudDB/:projectId/task/:taskId",
+            method: "GET"
         }
     });
 

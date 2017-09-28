@@ -223,6 +223,15 @@ angular.module("ovh-api-services").service("OvhApiCloudDbLexi", ["$resource", "$
             url: "/cloudDB/:projectId/standard/flavor/:flavorId",
             method: "GET",
             cache: cache
+        },
+        getTasks: {
+            url: "/cloudDB/:projectId/task",
+            method: "GET",
+            isArray: true
+        },
+        getTask: {
+            url: "/cloudDB/:projectId/task/:taskId",
+            method: "GET"
         }
     });
 
@@ -307,10 +316,64 @@ angular.module("ovh-api-services").service("OvhApiCloudDbStdInstance", ["$inject
         Lexi: function () {
             return $injector.get("OvhApiCloudDbStdInstanceLexi");
         },
+        Erika: function () {
+            return $injector.get("OvhApiCloudDbStdInstanceErika");
+        },
         WhiteList: function () {
             return $injector.get("OvhApiCloudDbStdInstanceWhiteList");
         }
     };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCloudDbStdInstanceErika", ["$resource", "$cacheFactory", "Apiv7Endpoint", function ($resource, $cacheFactory, Apiv7Endpoint) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiCloudDbStdInstanceErika");
+    var queryCache = $cacheFactory("OvhApiCloudDbStdInstanceErikaQuery");
+
+    var resource = new Apiv7Endpoint("/cloudDB/:projectId/standard/instance/:instanceId", {
+        projectId: "@projectId",
+        instanceId: "@instanceId"
+    }, {
+        query: {
+            url: "/cloudDB/:projectId/standard/instance",
+            method: "GET",
+            cache: queryCache,
+            isArray: true,
+            serviceType: "apiv7"
+        },
+        test1: {
+            url: "/dbaas/queue",
+            method: "GET",
+            cache: queryCache,
+            isArray: true,
+            serviceType: "apiv7"
+        },
+        test2: {
+            url: "/freefax",
+            method: "GET",
+            cache: queryCache,
+            isArray: true,
+            serviceType: "apiv7"
+        },
+        test3: {
+            url: "/cloudDB",
+            method: "GET",
+            cache: queryCache,
+            isArray: true,
+            serviceType: "apiv7"
+        }
+    });
+
+    resource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    resource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return resource;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiCloudDbStdInstanceLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
