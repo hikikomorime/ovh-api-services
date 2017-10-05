@@ -31,6 +31,11 @@ angular.module("ovh-api-services").service("OvhApiCloudDbStdInstanceLexi", funct
             cache: cache,
             interceptor: interceptor
         },
+        oom: {
+            url: "/cloudDB/:projectId/standard/instance/:instanceId/oom",
+            method: "GET",
+            isArray: true
+        },
         restart: {
             url: "/cloudDB/:projectId/standard/instance/:instanceId/restart",
             method: "POST",
