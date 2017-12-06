@@ -9,7 +9,7 @@ angular.module("ovh-api-services").service("OvhApiMetricsOrderUpgradeLexi", func
         response: function (response) {
             cache.remove(response.config.url);
             queryCache.removeAll();
-            return response;
+            return response.data;
         }
     };
 
