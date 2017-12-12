@@ -6455,6 +6455,30 @@ angular.module("ovh-api-services").service("OvhApiOrderCartServiceOption", ["$in
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiOrderCatalogFormattedLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiOrderCatalogFormattedLexi");
+
+    return $resource("/order/catalog/formatted/:catalogName", {
+        catalogName: "@catalogName"
+    }, {
+        get: { method: "GET", cache: cache },
+        query: { method: "GET", isArray: true, cache: cache }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCatalogFormatted", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiOrderCatalogFormattedLexi");
+        }
+    };
+
+}]);
+
 angular.module("ovh-api-services").service("OvhApiOrderCloudProjectCreditLexi", ["$resource", function ($resource) {
     "use strict";
 
