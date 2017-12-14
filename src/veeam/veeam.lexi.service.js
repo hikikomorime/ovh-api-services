@@ -32,6 +32,11 @@ angular.module("ovh-api-services").service("OvhApiVeeamLexi", function ($resourc
             method: "POST",
             interceptor: interceptor
         },
+        deleteInventory: {
+            url: "/veeamCloudConnect/:serviceName/backupRepository/:inventoryName",
+            method: "DELETE",
+            interceptor: interceptor
+        },
         getOrderableOffers: {
             url: "/veeamCloudConnect/:serviceName/orderableUpgrade",
             isArray: true,
