@@ -1,8 +1,4 @@
 angular.module("ovh-api-services").service("OvhApiOrderCartLexi", function ($resource, $cacheFactory) {
-<<<<<<< HEAD
-
-=======
->>>>>>> commit changes
     "use strict";
 
     // Cache to invalidate
@@ -31,13 +27,10 @@ angular.module("ovh-api-services").service("OvhApiOrderCartLexi", function ($res
         assign: {
             method: "POST",
             url: "/order/cart/:cartId/assign"
-<<<<<<< HEAD
         },
         checkout: {
             method: "POST",
             url: "/order/cart/:cartId/checkout"
-=======
->>>>>>> commit changes
         }
     });
 

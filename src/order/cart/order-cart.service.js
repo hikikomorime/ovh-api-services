@@ -1,5 +1,4 @@
 angular.module("ovh-api-services").service("OvhApiOrderCart", function ($injector) {
-<<<<<<< HEAD
 
     "use strict";
     return {
@@ -12,13 +11,6 @@ angular.module("ovh-api-services").service("OvhApiOrderCart", function ($injecto
         ServiceOption: function () {
             return $injector.get("OvhApiOrderCartServiceOption");
         },
-=======
-    "use strict";
-    return {
-        Product: function () {
-            return $injector.get("OvhApiOrderCartProduct");
-        },
->>>>>>> commit changes
         Lexi: function () {
             return $injector.get("OvhApiOrderCartLexi");
         }
