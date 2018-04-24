@@ -13,6 +13,9 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloud", function ($in
         },
         Datacenter: function () {
             return $injector.get("OvhApiDedicatedCloudDatacenter");
+        },
+        Location: function () {
+            return $injector.get("OvhApiDedicatedCloudLocation");
         }
     };
 
